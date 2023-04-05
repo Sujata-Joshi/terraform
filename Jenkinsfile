@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage('GitCode'){
              steps{
-                git url : 'https://github.com/Sujata-Joshi/terraformJenkinsApril2023.git',
+                git url : 'https://github.com/Sujata-Joshi/terraform.git',
                 branch : 'master'
              }
         }
