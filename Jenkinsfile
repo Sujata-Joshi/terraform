@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage('Azure'){
             steps{
-                sh 'az cloud set --name AzureChinaCloud'   
+                sh 'az cloud set --name AzureCloud'   
             }
         }
         stage('Azure1'){
