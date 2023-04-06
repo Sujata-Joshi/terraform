@@ -4,8 +4,16 @@ pipeline{
     stages{
         stage('Azure'){
             steps{
-                sh 'az account set --subscription="56bd9e98-6237-4a3c-9aa8-f13046e1f606"',
-                sh 'az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/56bd9e98-6237-4a3c-9aa8-f13046e1f606"',
+                sh 'az account set --subscription="56bd9e98-6237-4a3c-9aa8-f13046e1f606"'   
+            }
+        }
+        stage('Azure1'){
+            steps{
+                sh 'az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/56bd9e98-6237-4a3c-9aa8-f13046e1f606"'
+            }
+        }
+        stage('Azure2'){
+            steps{
                 sh 'az login --service-principal -u CLIENT_ID -p CLIENT_SECRET --tenant TENANT_ID'
             }
         }
