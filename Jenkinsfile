@@ -2,11 +2,18 @@ pipeline{
     agent any
     
     stages{
+        stage('Azure'){
+            steps{
+                sh 'az account set --subscription="56bd9e98-6237-4a3c-9aa8-f13046e1f606"',
+                sh 'az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/56bd9e98-6237-4a3c-9aa8-f13046e1f606"',
+                sh 'az login --service-principal -u CLIENT_ID -p CLIENT_SECRET --tenant TENANT_ID'
+            }
+        }
         stage('GitCode'){
-             steps{
+            steps{
                 git url : 'https://github.com/Sujata-Joshi/terraform.git',
                 branch : 'master'
-             }
+            }
         }
         stage('Terraform initialization') {
             steps{
