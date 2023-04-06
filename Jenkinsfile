@@ -2,6 +2,14 @@ pipeline{
     agent any
     
     stages{
+        stage('Azure')
+        {
+            steps{
+                withCredentials([azureServicePrincipal('AzureTerraform')]) {
+                    sh 'az login --service-principal -u $CLIENT_ID -p $CLIENT_SECRET -t $TENANT_ID'
+                }
+            }
+        }
         stage('GitCode'){
             steps{
                 git url : 'https://github.com/Sujata-Joshi/terraform.git',
