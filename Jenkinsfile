@@ -1,14 +1,8 @@
 pipeline{
-    agent any
-    environment {
-        MY_CRED = credentials('AzureTerraform')
-    }
+    agent { label 'terraformNode'}
+    
     stages{
-        stage('build') {
-            steps {
-                sh 'az login --service-principal -u $MY_CRED_CLIENT_ID -p $MY_CRED_CLIENT_SECRET -t $MY_CRED_TENANT_ID'
-            }
-        }
+        
         stage('GitCode'){
             steps{
                 git url : 'https://github.com/Sujata-Joshi/terraform.git',
